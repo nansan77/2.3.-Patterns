@@ -15,7 +15,7 @@ public class DataGenerator {
 
     private static final Faker faker = new Faker(new Locale("ru"));
     public static String getRandomCity() {
-        List<String> list = Arrays.asList("Новосибирск", "Москва", "Санкт-Петербург", "Казань");
+        List<String> list = Arrays.asList("Краснодар", "Москва", "Санкт-Петербург", "Смара");
         Random rand = new Random();
         String randomElement = list.get(rand.nextInt(list.size()));
         return randomElement;
