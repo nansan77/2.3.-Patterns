@@ -23,8 +23,11 @@ public class CardDelivery {
     private final String phone = getFakerPhone();
 
     @BeforeEach
-    public void setUp() {
+    void setup(){
         open("http://localhost:9999");
+        form = $("[action]");
+        form.$(cssSelector("[data-test-id=city] input")).sendKeys(city);
+        form.$(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
 
     }
 
