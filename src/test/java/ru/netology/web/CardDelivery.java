@@ -26,57 +26,57 @@ public class CardDelivery {
     void setup(){
         open("http://localhost:9999");
         form = $("[action]");
-        form.$(cssSelector("[data-test-id=city] input")).sendKeys(city);
-        form.$(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
+        $(cssSelector("[data-test-id=city] input")).sendKeys(city);
+        $(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
 
     }
 
     @Test
     void shouldSubmitWithValidData() {
-        form.$(cssSelector("[data-test-id=date] input")).sendKeys(date);
-        form.$(cssSelector("[name=name]")).sendKeys(name);
-        form.$(cssSelector("[name=phone]")).sendKeys(phone);
-        form.$(cssSelector("[data-test-id=agreement]")).click();
-        form.$(byText("Запланировать")).click();
+        $(cssSelector("[data-test-id=date] input")).sendKeys(date);
+        $(cssSelector("[name=name]")).sendKeys(name);
+       $(cssSelector("[name=phone]")).sendKeys(phone);
+        $(cssSelector("[data-test-id=agreement]")).click();
+       $(byText("Запланировать")).click();
         $(cssSelector(".notification__content")).waitUntil(Condition.visible, 15000).shouldHave(text(date));
     }
 
     @Test
     void shouldSuggestNewDateWithValidData() {
         form.$(cssSelector("[data-test-id=date] input")).sendKeys(date);
-        form.$(cssSelector("[name=name]")).sendKeys(name);
-        form.$(cssSelector("[name=phone]")).sendKeys(phone);
-        form.$(cssSelector("[data-test-id=agreement]")).click();
-        form.$(byText("Запланировать")).click();
+        $(cssSelector("[name=name]")).sendKeys(name);
+        $(cssSelector("[name=phone]")).sendKeys(phone);
+        $(cssSelector("[data-test-id=agreement]")).click();
+        $(byText("Запланировать")).click();
         $(cssSelector(".notification__content")).waitUntil(Condition.visible, 15000).shouldHave(text(date));
         open("http://localhost:9999");
-        form.$(cssSelector("[data-test-id=city] input")).sendKeys(city);
-        form.$(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
-        form.$(cssSelector("[data-test-id=date] input")).sendKeys(anotherDate);
-        form.$(cssSelector("[name=name]")).sendKeys(name);
-        form.$(cssSelector("[name=phone]")).sendKeys(phone);
-        form.$(cssSelector("[data-test-id=agreement]")).click();
-        form.$(byText("Запланировать")).click();
+        $(cssSelector("[data-test-id=city] input")).sendKeys(city);
+        $(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
+        $(cssSelector("[data-test-id=date] input")).sendKeys(anotherDate);
+        $(cssSelector("[name=name]")).sendKeys(name);
+        $(cssSelector("[name=phone]")).sendKeys(phone);
+        $(cssSelector("[data-test-id=agreement]")).click();
+        $(byText("Запланировать")).click();
         $(cssSelector(".notification_status_error .button")).click();
         $(cssSelector(".notification__content")).waitUntil(Condition.visible, 15000).shouldHave(text(anotherDate));
     }
 
     @Test
     void shouldNotSuggestNewDateWithInvalidDate() {
-        form.$(cssSelector("[data-test-id=date] input")).sendKeys(date);
-        form.$(cssSelector("[name=name]")).sendKeys(name);
-        form.$(cssSelector("[name=phone]")).sendKeys(phone);
-        form.$(cssSelector("[data-test-id=agreement]")).click();
-        form.$(byText("Запланировать")).click();
+        $(cssSelector("[data-test-id=date] input")).sendKeys(date);
+        $(cssSelector("[name=name]")).sendKeys(name);
+       $(cssSelector("[name=phone]")).sendKeys(phone);
+        $(cssSelector("[data-test-id=agreement]")).click();
+        $(byText("Запланировать")).click();
         $(cssSelector(".notification__content")).waitUntil(Condition.visible, 15000).shouldHave(text(date));
         open("http://localhost:9999");
-        form.$(cssSelector("[data-test-id=city] input")).sendKeys(city);
-        form.$(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
-        form.$(cssSelector("[data-test-id=date] input")).sendKeys(invalidDate);
-        form.$(cssSelector("[name=name]")).sendKeys(name);
-        form.$(cssSelector("[name=phone]")).sendKeys(phone);
-        form.$(cssSelector("[data-test-id=agreement]")).click();
-        form.$(byText("Запланировать")).click();
+        $(cssSelector("[data-test-id=city] input")).sendKeys(city);
+        $(cssSelector("[data-test-id=date] input")).doubleClick().sendKeys(Keys.DELETE);
+        $(cssSelector("[data-test-id=date] input")).sendKeys(invalidDate);
+        $(cssSelector("[name=name]")).sendKeys(name);
+        $(cssSelector("[name=phone]")).sendKeys(phone);
+        $(cssSelector("[data-test-id=agreement]")).click();
+       $(byText("Запланировать")).click();
         $(byText("Заказ на выбранную дату невозможен")).waitUntil(Condition.visible, 15000);
     }
 }

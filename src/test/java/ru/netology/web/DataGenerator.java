@@ -35,7 +35,13 @@ public class DataGenerator {
         Faker faker = new Faker(new Locale("ru"));
         return faker.name().firstName() + " " + faker.name().lastName();
     }
-
+    static String dataNameWishLetterEBrief() {
+        Random random = new Random();
+        int rand = random.nextInt(7);
+        String nameWishEBrief[] = {"Кизляр Ерёма", "Ёжиков Артур", "Егорова Фёкла", "Берёза Алексей",
+                "Дрёма Василиса", "Кандратов Стёпа"};
+        return nameWishEBrief[rand];
+    }
     public static String getFakerPhone() {
         Faker faker = new Faker(new Locale("ru"));
         return faker.phoneNumber().phoneNumber();
